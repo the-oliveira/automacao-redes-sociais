@@ -1,0 +1,19 @@
+[project]
+name = "nikki-automation"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi", "uvicorn[standard]", "pydantic>=2", "pydantic-settings", "sqlalchemy>=2", "httpx",
+  "pillow", "pyyaml", "imageio-ffmpeg", "python-multipart", "tzdata",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 140

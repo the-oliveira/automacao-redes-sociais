@@ -1,0 +1,13 @@
+# EXEMPLO. Copie para config/whatsapp_groups.yaml (fora do Git) com os links reais.
+# Fonte ÚNICA de verdade dos grupos de WhatsApp por rede.
+# Para trocar o grupo ativo do Instagram use NIKKI_INSTAGRAM_ACTIVE_GROUP (primary | reserve).
+groups:
+  instagram:
+    primary: https://chat.whatsapp.com/EXAMPLEinstagramPRIMARY01
+    reserve: https://chat.whatsapp.com/EXAMPLEinstagramRESERVE01
+  facebook:
+    primary: https://chat.whatsapp.com/EXAMPLEfacebookPRIMARY001
+  tiktok:
+    primary: https://chat.whatsapp.com/EXAMPLEtiktokPRIMARY00001
+  youtube:
+    primary: https://chat.whatsapp.com/EXAMPLEyoutubePRIMARY0001

@@ -1,0 +1,14 @@
+{
+  "external_id": "fixture-amazon-001",
+  "product_name": "Controle Sem Fio DualSense para PlayStation 5 - Cinza Camuflado",
+  "original_price": 449.90,
+  "current_price": 329.00,
+  "discount_percent": 27,
+  "coupon": null,
+  "product_url": "https://www.amazon.com.br/dp/B0BQXZ11B8",
+  "affiliate_url": "https://www.amazon.com.br/dp/B0BQXZ11B8?tag=nikki-20",
+  "image_url": "https://m.media-amazon.com/images/I/61f1rydiVuL._AC_SL1500_.jpg",
+  "store": "amazon",
+  "category": "games",
+  "received_at": "2026-10-05T09:00:00-03:00"
+}

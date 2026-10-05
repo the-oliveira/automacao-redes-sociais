@@ -1,0 +1,123 @@
+# Regras de negócio configuráveis (score, distribuição, deduplicação).
+# Alterar este arquivo e reiniciar o serviço é suficiente; nenhum código muda.
+
+score:
+  # Pesos relativos (normalizados automaticamente para somar 100).
+  weights:
+    discount: 22
+    price: 14
+    relevance: 18
+    popularity: 10
+    coupon: 6
+    reliability: 12
+    image: 8
+    content_potential: 10
+    price_history: 0   # pronto para o futuro: ative quando houver histórico real
+  # Confiabilidade por loja (0..1). Loja desconhecida usa "default".
+  store_trust:
+    amazon: 1.0
+    mercadolivre: 0.85
+    magalu: 0.85
+    kabum: 0.9
+    shopee: 0.7
+    aliexpress: 0.55
+    default: 0.45
+  # Relevância por categoria para o público da Nikki (geek/gamer/TCG/tech).
+  category_relevance:
+    tcg: 1.0
+    games: 1.0
+    gamer: 1.0
+    geek: 0.95
+    colecionaveis: 0.9
+    tecnologia: 0.85
+    eletronicos: 0.8
+    informatica: 0.8
+    anime: 0.9
+    livros: 0.55
+    casa: 0.4
+    moda: 0.35
+    beleza: 0.3
+    default: 0.45
+  # Palavras que aumentam relevância/potencial de conteúdo (nome do produto).
+  hype_keywords:
+    - pokemon
+    - pokémon
+    - booster
+    - elite trainer
+    - magic the gathering
+    - yu-gi-oh
+    - lorcana
+    - one piece
+    - playstation
+    - ps5
+    - xbox
+    - nintendo
+    - switch
+    - steam deck
+    - controle
+    - headset
+    - teclado mecanico
+    - teclado mecânico
+    - mouse gamer
+    - monitor gamer
+    - funko
+    - lego
+    - zelda
+    - mario
+    - rtx
+    - ssd
+
+distribution:
+  # Faixas de score -> tier -> formatos por rede.
+  tiers:
+    - name: skip
+      min: 0
+      formats: {}
+    - name: low
+      min: 60
+      formats:
+        facebook: [post]
+        instagram: [story]
+    - name: medium
+      min: 75
+      formats:
+        instagram: [feed, story]
+        facebook: [post]
+    - name: high
+      min: 90
+      formats:
+        instagram: [feed, story, reel]
+        facebook: [post]
+        tiktok: [video]
+        youtube: [short]
+
+aggregate:
+  # Conteúdo agregado (top N) — preferido para vídeo.
+  min_score: 60
+  max_items: 5
+  min_items: 3
+  lookback_hours: 12
+  networks:
+    instagram: [reel]
+    tiktok: [video]
+    youtube: [short]
+    facebook: [reel]
+  # Horários (America/Sao_Paulo) para montar os vídeos agregados automaticamente.
+  # kinds: top_morning, top_today, price_drops, still_available, gamer_geek, tcg
+  schedule:
+    - {at: "11:30", kind: top_morning}
+    - {at: "19:00", kind: top_today}
+
+dedup:
+  window_hours: 72
+  # Queda de preço maior que isso, dentro da janela, conta como promoção nova.
+  price_drop_pct_new_promo: 3.0
+
+publishing:
+  # Minutos a partir de agora para agendar quando não houver horário definido.
+  schedule_offset_minutes: 3
+  # Espaço mínimo entre posts na MESMA rede (evita rajada).
+  min_gap_minutes_per_network: 20
+  max_attempts: 4
+  backoff_base_seconds: 60
+  backoff_max_seconds: 3600

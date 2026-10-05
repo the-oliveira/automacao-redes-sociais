@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+data/
+!data/.gitkeep
+*.log
+
+# links reais dos grupos (não publicar)
+config/whatsapp_groups.yaml
+STATUS.local.md
